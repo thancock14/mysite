@@ -28,6 +28,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
+    arguments: '-c Release'
 
 - task: CopyFiles@2
   inputs:
