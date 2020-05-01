@@ -30,7 +30,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'WebApplication/bin/publish'
+    SourceFolder: 'WebApplication/bin/Release/netcoreapp3.1/publish/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
