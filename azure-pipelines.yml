@@ -19,28 +19,32 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 - task: DotNetCoreCLI@2
+  name: 'BuildWebApp'
   inputs:
     command: 'build'
     projects: 'WebApplication1/WebApplication1.csproj'
     arguments: '-c Release'
 
 - task: DotNetCoreCLI@2
+  name: 'PublishWebApp'
   inputs:
     command: 'publish'
     publishWebProjects: true
     arguments: '-c Release -o WebApplication1/publish/'
 
-- task: CopyFiles@2
+- task: CopyFiles@2 
+  name: 'CopyWebsitepublish'
   inputs:
     SourceFolder: 'WebApplication1/publish/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: CopyFiles@2
+  name: 'CopyInfrastructure'
   inputs:
     SourceFolder: 'Infrastructure/'
     Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
   inputs:
